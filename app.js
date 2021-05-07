@@ -3,18 +3,21 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-const url = "mongodb://localhost:27017/swccoursedirectory";
+const urllocal = "mongodb://localhost:27017/swccoursedirectory";
 const authRoutes = require("./routes/auth.routes");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const passportSetup = require("./config/passport-setup");
 const methodOverride = require("method-override");
 const keys = require("./config/keys");
+const urlcloud = keys.mongodb.dburi;
 const adminRoutes = require("./routes/auth.routes");
+const middleware = require("./middleware/index");
+const courseRoutes = require("./routes/course.routes");
 
 //Database Connection
 mongoose.connect(
-  url,
+  urllocal,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true,

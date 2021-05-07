@@ -1,8 +1,8 @@
 exports.isLoggedIn = function (req, res, next) {
-  if (req.isAuthenticated()) {
+  if (req.user) {
     return next();
   }
-  req.flash("info", "You need to login first!");
+  console.log("You need to login first");
   return res.redirect("/coursedirectory/auth/login");
 };
 
@@ -10,7 +10,7 @@ exports.isAdmin = function (req, res, next) {
   if (req.user.isAdmin) {
     return next();
   }
-  req.flash("info", "You are unauthorized!");
+  console.log("info", "You are unauthorized!");
   //req.logout();
   return res.redirect("/coursedirectory/admin");
 };
